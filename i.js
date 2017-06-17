@@ -19,48 +19,32 @@
 
 	function MenuSearchService(){
 		var server=this;
-		server.getMatchedMenuItems=function (searchTerm){
+		 service.getMatchedMenuItems = function(searchTerm) {
+		      return $http({
+			method: "GET",
+			url: (ApiBasePath + "/menu_items.json")
+		      })
+			.then(function(response){
+			  var menuItems = response.data;
+			  var foundItems = filterOnDescription(menuItems.menu_items, searchTerm);
 
-			var response=$http({
-				method:'GET',
-				url:"https://davids-restaurant.herokuapp.com/menu_items.json"
+			  return foundItems;
 			});
+		    };
 
-			var promise=response;
-			promise.then(function(response){
-			
-				server.data=response.data;
-				console.log(server.data);
-				server.filteredData=[];
-				for (var i = server.data.length - 1; i >= 0; i--) {
-					var regex = new RegExp(',', 'g');
-					var x=x.replace(regex," "); 
-					x=server.data[i].description.split(" ");
-					var regex = new RegExp(',', 'g');
-					for (var j = x.length - 1; j >= 0; j--) {
-						if(searchTerm===x[j]){
-							server.filteredData.push(server.data[i]);
-							break;
-						}
-					}
-				}
-				if(server.filteredData.length===0){
-					 throw new Error("Nothing Found");
-	    		}
-	    		else{
-				return server.filteredData
-				}
-			}).
-			catch(function (error) {
-		    	console.log("Something went terribly wrong.");
-  			});
-			
-    	};
-    	server.removeItem=function(index){
-    		server.filteredData.splice(index, 1);
-    		return server.filteredData;
-    	}
 
+		    function filterOnDescription(list, searchTerm) {
+		      var newList = [];
+
+		      for(var i = 0; i < list.length; i++) {
+			if(list[i].description.indexOf(searchTerm) > 0) {
+			  newList.push(list[i]);
+			}
+		      }
+
+		      return newList;
+		    }
+		
     }
 		
 	NarrowItDownController.$inject = ['MenuSearchService','$scope'];
@@ -82,7 +66,7 @@
 			}
 		}
 		shop.removeItem=function(index){
-			shop.items =MenuSearchService.removeItem(index);
+			shop.items.splice(index, 1);
 		}
 		shop.count=shop.items.length;
 		// shop.menuLoaded=function(index){

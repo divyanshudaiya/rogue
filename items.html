@@ -2,8 +2,8 @@
 	<li ng-repeat='item in found'>
 		
 		<b style="color:green; font-size: 1em;" >{{ item.name }} [{{ item.short_name }}]</b><br />
-		<p style="color:pink; font-size: 0.8em;" > Content: {{ item.description }}</p>	
-		<button ng-click='onRemove({index: $index});''>Remove Item</button>
+		<p style="color:pink; font-size: 0.8em;" > Content: {{ item.description }} <button ng-click='onRemove({index: $index});''>Remove Item</button></p>	
+		
 		
 	</li>
 </ol>

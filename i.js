@@ -28,7 +28,9 @@
 
 			var promise=response;
 			promise.then(function(response){
+			
 				server.data=response.data;
+				console.log(server.data);
 				server.filteredData=[];
 				for (var i = server.data.length - 1; i >= 0; i--) {
 					var regex = new RegExp(',', 'g');
@@ -68,7 +70,7 @@
 		
 		var shop=this;
 		$scope.customStyle={};
-		shop.items=[]
+		shop.items=[];
 		shop.searchTerm="";
 		shop.MenuSearch=function(searchTerm){
 			try{

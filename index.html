@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>the diet checher</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="./angular.min.js"></script>
+		<script src="./app.js"></script>
+	</head>
+	<body ng-app='f'>
+		<div class = 'outer'  >
+			<section><h1>Assignment 3 Solution</h1></section>
+			<div class='inner-left' ng-controller='NarrowItDownController as list' ng-style="customStyle.style">
+				<input type="text" ng-model="list.searchTerm" >
+				<button ng-click="list.MenuSearch();">search</button>
+				 <found-items 
+						found="list.items"
+				 		on-remove="list.removeItem(index)"
+				 		title="Search result's"
+				 		errorLog="{{list.errorLog}}"
+				 ></found-items>
+					
+			</div>
+			
+		</div>
+	</body>
+</html>
+

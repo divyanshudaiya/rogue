@@ -29,8 +29,9 @@
 	      })
 		.then(function(response){
 		  var menuItems = response.data;
-		  var foundItems = filterOnDescription(menuItems.menu_items, searchTerm);
-
+		  console.log(response.data)
+		      var foundItems = filterOnDescription(menuItems.menu_items, searchTerm);
+			
 		  return foundItems;
 		});
 	    };

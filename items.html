@@ -1,9 +1,10 @@
-<ol >
-	<p ng-if='(errorLog.length>0)||(found.length>0)'>{{title}}</p>
-	<li ng-repeat="item in found">
+<ol ><p ng-if='(errorLog.length>0)||(found.length>0)'>{{title}}</p>
+	<li ng-repeat='item in found'>
+		
 		<b style="color:green; font-size: 1em;" >{{ item.name }} [{{ item.short_name }}]</b><br />
-		<p style="color:pink; font-size: 0.8em;" > Content: {{ item.description }}</p>
-		<button ng-click="onRemove({index: $index});">Remove Item</button><br/>
+		<p style="color:pink; font-size: 0.8em;" > Content: {{ item.description }}</p>	
+		<button ng-click='onRemove({index: $index});''>Remove Item</button>
+		
 	</li>
 </ol>
-<div class="error" ng-if="errorLog">{{errorLog}}</div>
+<div class='error' ng-if='errorLog'>{{errorLog}}</div>

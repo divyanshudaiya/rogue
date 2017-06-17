@@ -9,7 +9,12 @@
 
 	function foundItems(){
 			var ddo={
-					templateUrl:"items.html",
+					template:"<ol ><p ng-if='(errorLog.length>0)||(found.length>0)'>{{title}}</p><li ng-repeat='item in found'>"+
+"<div ><b>{{ item.name }} [{{" +
+"item.short_name }}]</b><br />"+
+"Content: {{ item.description }}"+
+"<button ng-click='onRemove({index: $index});''>Remove Item</button></div></li></ol>"+
+"<div class='error' ng-if='errorLog'>{{errorLog}}</div>",
 					//templateUrl:'items.html',
 					scope:{
 						    title:"@title",

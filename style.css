@@ -27,7 +27,7 @@ div{
 	padding-top: 20px;
 }
 button{
-
+	float:right;
 	background-color: yellow;
 	color: red;
 	font-weight: bolder;

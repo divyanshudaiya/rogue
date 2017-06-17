@@ -5,7 +5,7 @@
 	angular.module('f',[])
 	.controller('NarrowItDownController',NarrowItDownController)
 	.service('MenuSearchService',MenuSearchService)
-	.directive('foundItems',foundItems);
+	.directive('foundItems',foundItems).constant("ApiBasePath", "https://davids-restaurant.herokuapp.com");;
 
 	function foundItems(){
 		var ddo={

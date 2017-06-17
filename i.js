@@ -18,7 +18,7 @@
 	}
 
 	function MenuSearchService(){
-		var server=this;
+		var service=this;
 		 service.getMatchedMenuItems = function(searchTerm) {
 		      return $http({
 			method: "GET",

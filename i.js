@@ -15,38 +15,40 @@
 			}
 		};
 		return ddo;
-	}
-
-	function MenuSearchService(){
-		var service=this;
-		 service.getMatchedMenuItems = function(searchTerm) {
-		      return $http({
-			method: "GET",
-			url: (ApiBasePath + "/menu_items.json")
-		      })
-			.then(function(response){
-			  var menuItems = response.data;
-			  var foundItems = filterOnDescription(menuItems.menu_items, searchTerm);
-
-			  return foundItems;
-			});
-		    };
+		}
+	MenuSearchService.$inject = ["$http", "ApiBasePath"];
+	  function MenuSearchService($http, ApiBasePath) {
+	    var service = this;
 
 
-		    function filterOnDescription(list, searchTerm) {
-		      var newList = [];
 
-		      for(var i = 0; i < list.length; i++) {
-			if(list[i].description.indexOf(searchTerm) > 0) {
-			  newList.push(list[i]);
-			}
-		      }
+	    service.getMatchedMenuItems = function(searchTerm) {
+	      return $http({
+		method: "GET",
+		url: (ApiBasePath + "/menu_items.json")
+	      })
+		.then(function(response){
+		  var menuItems = response.data;
+		  var foundItems = filterOnDescription(menuItems.menu_items, searchTerm);
 
-		      return newList;
-		    }
-		
-    }
-		
+		  return foundItems;
+		});
+	    };
+
+
+	    function filterOnDescription(list, searchTerm) {
+	      var newList = [];
+
+	      for(var i = 0; i < list.length; i++) {
+		if(list[i].description.indexOf(searchTerm) > 0) {
+		  newList.push(list[i]);
+		}
+	      }
+
+	      return newList;
+	    }
+	  }
+
 	NarrowItDownController.$inject = ['MenuSearchService','$scope'];
 	
 

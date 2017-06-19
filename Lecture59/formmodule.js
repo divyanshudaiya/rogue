@@ -54,14 +54,14 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
 		.state('categorie',{
 				url:"/categories",
 				template: 
-				'      <p style="{text-align:center;}">Sign in form</p>'+
-				'      <form name=\'regForm\' novalidate>'+
+				'      <div class="container" ><fieldset><p style="text-align:center;margin-bottom:10px;font-size:2em;">Sign in form</p>'+
+				'      <form class="form-horizontal" name=\'regForm\' novalidate>'+
 				''+
-				'        <input type="text" name="username" placeholder="Name"'+
+				'        <label class="control-label col-sm-2" for="pwd">Name:</label><div class="col-sm-10"> <input type="text" class="form-control" name="username" placeholder="Name"'+
 				'          ng-model="catList.user.username"'+
 				'          required'+
 				'          minlength="1"'+
-				'          ng-maxlength="20">'+
+				'          ng-maxlength="20"></div>'+
 				'          '+
 				'          <br><span'+
 				'            ng-if="(regForm.username.$error.minlength || regForm.username.$error.required) && regForm.username.$touched">'+
@@ -72,11 +72,11 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
 				'          </span>'+
 				'          <br>'+
 				''+
-				'        <input type="text" name="usersurname" placeholder="Surname"'+
+				'        <label class="control-label col-sm-2" for="pwd">Surname:</label><div class="col-sm-10"> <input type="text"  class="form-control" name="usersurname" placeholder="Surname"'+
 				'          ng-model="catList.user.usersurname"'+
 				'          required'+
 				'          minlength="1"'+
-				'          ng-maxlength="20">'+
+				'          ng-maxlength="20"></div>'+
 				'          '+
 				'          <br><span'+
 				'            ng-if="(regForm.usersurname.$error.minlength || regForm.usersurname.$error.required) && regForm.username.$touched">'+
@@ -87,38 +87,39 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
 				'          </span>'+
 				'          <br>'+
 				''+
-				'        <input type="email" name="email" placeholder="Email"'+
+				'        <label class="control-label col-sm-2" for="pwd">Email:</label><div class="col-sm-10"> <input type="email"  class="form-control" name="email" placeholder="Email"'+
 				'          ng-model="catList.user.email"'+
-				'          required>'+
+				'          required></div>'+
 				'         <br> <span ng-if="regForm.email.$invalid && regForm.email.$touched">'+
 				'            Must be a valid email address'+
 				'          </span>'+
 				'          <br>'+
 				''+      
-				  		'<input type="text" name="phone" placeholder="Phone ###-###-####"'+
+				  		'<label class="control-label col-sm-2" for="pwd">Phone:</label><div class="col-sm-10"> <input type="text"  class="form-control" name="phone" placeholder="Phone ###-###-####"'+
 				'          ng-model="catList.user.phone"'+
-				'          pattern="&#x28;&#x5C;&#x64;&#x7B;&#x33;&#x7D;&#x29;&#x2D;&#x28;&#x5C;&#x64;&#x7B;&#x33;&#x7D;&#x29;&#x2D;&#x28;&#x5C;&#x64;&#x7B;&#x34;&#x7D;&#x29;">'+
+				'          pattern="&#x28;&#x5C;&#x64;&#x7B;&#x33;&#x7D;&#x29;&#x2D;&#x28;&#x5C;&#x64;&#x7B;&#x33;&#x7D;&#x29;&#x2D;&#x28;&#x5C;&#x64;&#x7B;&#x34;&#x7D;&#x29;"></div>'+
 				'          <br><span ng-if="regForm.phone.$invalid && regForm.phone.$touched">'+
 				'            Phone must be in the format ###-###-####.'+
 				'          </span>'+
 				'          <br>'+
-				'        <input type="text" name="short_name" placeholder="short_name"'+
+				'        <label class="control-label col-sm-2" for="pwd">Favourite dish(short name):</label><div class="col-sm-10"> <input type="text"  class="form-control"  name="short_name" placeholder="short_name"'+
 				'        ng-model="catList.user.short_name" '+
 				'        ng-change="catList.assign(catList.user.short_name)"'+
-				'         required>'+
+				'         required></div>'+
 				'        <br><span ng-if="regForm.short_name.$touched || catList.valid">'+
 				'          {{catList.error}}'+
 				'        </span>'+
 				'        <br>'+
 				''+
-				'        <button style="{text-align:center;float:clear;}"'+
-				'          ng-disabled="regForm.$invalid || catList.valid"'+
-				'          ng-click="catList.reassign()">Submit</button>'+
+				'          <br><div class="help-inline"  style=" text-align:center;margin: 10px;font-weight:bold;">'+
+				'            <p ng-if="regForm.$valid && !catList.valid">You can now Submit</p>'+
+				'          <p ng-hide=" regForm.$valid && !catList.valid">Please fill the form completly/properly</p></div>'+
+				'      '+
 				''+
-				'          <br><div style="margin-top: 10px;">'+
-				'            Form valid? {{ regForm.$valid && !catList.valid}}'+
-				'          </div>'+
-				'      </form>'
+				'        <div  class="col-sm-offset-2 col-sm-10"><button '+
+				'          ng-disabled="regForm.$invalid || catList.valid"'+
+				'          ng-click="catList.reassign() " style="font-size:1.5em;" class="btn btn-default">Submit</button><p ng-if="catList.total">See <a ui-sref="itemi" >info</a></p></div></form></fieldset></div>'
+				
 				
 				,
 			//	controller: 'categoriesController',
@@ -127,16 +128,16 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
 		.state('itemi',{
 				url:"/items",
 								
-				template:'<div ng-if="catList.total">'+
-				'{{ catList.user.username }}<br>'+
-				'{{ catList.user.email }}<br>'+
-				'{{ catList.user.short_name }}<br>'+
+				template:'<div class="container" style="padding-left:100px; padding-right:100px;font-size:2em; content-align:center; text-align:center;"><div ng-if="catList.total">'+
 				'<br><img src="images/menu/{{catList.value.category_short_name}}/{{catList.value.category_short_name}}.jpg" />'+
-				'{{ catList.value.name }}<br>'+
-				'{{ catList.value.description }}<br>'+
+				'<br><br><br><b>UserName</b> : {{ catList.user.username }} {{ catList.user.short_name }}<br>'+
+				'<b>Email</b>: {{ catList.user.email }}<br>'+
+				'<b>Favourite dish short-name</b>: {{ catList.value.short_name }}<br>'+
+				'<b>Favourite dish name</b>: {{ catList.value.name }}<br>'+
+				'<b>Favourite dish Description</b>: {{ catList.value.description }}<br>'+
 				''+
 				'</div>'+
-				'<div ng-if="!catList.total">please <a ui-sref="categorie">sign in</a> </div>',
+				'<div ng-if="!catList.total " style="text-align:center; font-size:4em;">please <a ui-sref="categorie">sign in</a> </div></div>',
 					
 
 				}

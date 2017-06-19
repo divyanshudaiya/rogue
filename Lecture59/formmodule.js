@@ -103,7 +103,7 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
 				'            Phone must be in the format ###-###-####.'+
 				'          </span>'+
 				'          <br>'+
-				'        <label class="control-label col-sm-2" for="pwd">Favourite dish(short name):</label><div class="col-sm-10"> <input type="text"  class="form-control"  name="short_name" placeholder="short_name ex. "A1" without commas"'+
+				'        <label class="control-label col-sm-2" for="pwd">Favourite dish(short name):</label><div class="col-sm-10"> <input type="text"  class="form-control"  name="short_name" placeholder="short_name ex. A1"'+
 				'        ng-model="catList.user.short_name" '+
 				'        ng-change="catList.assign(catList.user.short_name)"'+
 				'         required></div>'+
